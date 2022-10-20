@@ -12,16 +12,14 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;      //? ExtractJwt: Extr
 const { jwtSecret } = require('../config');
 const { getUserById } = require('../users/users.controllers');
 
-
-
 //? Exportando funcion anonima
 module.exports = (passport) => {
-    const options = {   //Lo siguiente trae el Authorization del header de Thunder Client
+    const options = {   //Lo siguiente trae el Authorization (TOKEN) del header de Thunder Client
         jwtFromRequest : ExtractJwt.fromAuthHeaderWithScheme('jwt'),
         secretOrKey: jwtSecret // Esta es la Variable de Entorno del .env JWT_SECRET (...y del config.js)
     }
     passport.use(
-        new JwtStrategy(options, async(decoded, done) => {
+        new JwtStrategy(options, async(decoded, done) => {  // Dcouded es el TOKEN Decodificado
             //? done(error, decoded)
             try {
                 const response = await getUserById(decoded.id)

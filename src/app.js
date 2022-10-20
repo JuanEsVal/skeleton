@@ -46,4 +46,3 @@ app.use('/api/v1/auth', authRouter)
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)
 })
-

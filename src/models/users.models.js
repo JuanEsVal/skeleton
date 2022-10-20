@@ -31,7 +31,7 @@ const Users = db.define("users", {
     allowNull: false
   },
   phone: {
-    type: DataTypes.STRING, // +52 
+    type: DataTypes.STRING, 
     allowNull: false,
     unique: true
   },

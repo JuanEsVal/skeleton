@@ -11,7 +11,6 @@ const config = {
         password: process.env.DB_PASS || 'root',
         dbName: process.env.DB_NAME
     }
-
 }
 
 module.exports = config

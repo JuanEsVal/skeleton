@@ -1,8 +1,15 @@
 const router = require('express').Router()
-const passport = require('passport')
 const adminValidate = require('../middlewares/role.middleware')
 const userServices = require('./users.services')
 
+
+// Pasos para proteger las rutas con passport:
+// 1. Con estas 2 lineas: Importar passport
+// 2. Importar el middleware directamente con el require() y ejecutarlo () pasandole (passport) 
+// 3. Protejo la ruta con el middleware que es el que pasa EN MEDIO de la  RUTA y el SERVICIO
+//      Por Ejemplo:  router.get(     Ruta  ,  Middleware  ,  Service     )
+//      router.get(  '/' , passport.authenticate('jwt', {session: false}, userServices.getAllUsers)
+const passport = require('passport')
 require('../middlewares/auth.middleware')(passport)
 
 
@@ -48,9 +55,6 @@ router.route('/:id')
         adminValidate,
         userServices.deleteUser
     )
-
-
-
-
+    
 
 module.exports = router
