@@ -1,6 +1,7 @@
 //? Dependencies
 const express = require('express');
 const db = require('./utils/database')
+const cors = require('cors')
 
 //? Files
 const {port} = require('./config');
@@ -13,6 +14,7 @@ const initModels = require('./models/initModels')
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 db.authenticate()
     .then(() => {
